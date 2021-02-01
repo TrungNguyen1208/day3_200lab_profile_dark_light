@@ -1,6 +1,4 @@
-import 'package:day3_200lab_profile_dark_light/utils/constants.dart';
 import 'package:day3_200lab_profile_dark_light/utils/size_config.dart';
-
 import 'package:flutter/material.dart';
 
 class ProfileInfoItem extends StatelessWidget {
@@ -8,7 +6,8 @@ class ProfileInfoItem extends StatelessWidget {
   final IconData icon;
   final Function onPress;
 
-  const ProfileInfoItem({Key key, this.icon = Icons.email, this.title, this.onPress})
+  const ProfileInfoItem(
+      {Key key, this.icon = Icons.email, this.title, this.onPress})
       : super(key: key);
 
   @override
@@ -17,24 +16,21 @@ class ProfileInfoItem extends StatelessWidget {
     return InkWell(
       onTap: onPress,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: defaultSize * 5, vertical: defaultSize * 2),
+        padding: EdgeInsets.symmetric(
+            horizontal: defaultSize * 5, vertical: defaultSize * 2),
         child: Center(
           child: Row(
             children: <Widget>[
               Icon(
                 icon,
-                color: AppColor.kPrimaryColor,
+                color: Theme.of(context).primaryColor,
                 size: defaultSize * 2.6,
               ),
               SizedBox(width: defaultSize * 2),
-              Text(
-                title,
-                style: TextStyle(
-                  fontSize: defaultSize * 1.6, //16
-                  color: AppColor.kTextColor,
-                ),
-              ),
-              Spacer(),
+              FittedBox(
+                  fit: BoxFit.fitWidth,
+                  child: Text(title,
+                      style: Theme.of(context).textTheme.subtitle1)),
             ],
           ),
         ),

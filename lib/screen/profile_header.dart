@@ -1,4 +1,3 @@
-import 'package:day3_200lab_profile_dark_light/utils/constants.dart';
 import 'package:day3_200lab_profile_dark_light/utils/size_config.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +18,7 @@ class ProfileHeader extends StatelessWidget {
             clipper: CustomShape(),
             child: Container(
               height: defaultSize * 15, //150
-              color: AppColor.kPrimaryColor,
+              color: Theme.of(context).primaryColor,
             ),
           ),
           Center(
@@ -43,18 +42,12 @@ class ProfileHeader extends StatelessWidget {
                 ),
                 Text(
                   name,
-                  style: TextStyle(
-                    fontSize: defaultSize * 2.2, // 22
-                    color: AppColor.kTextColor,
-                  ),
+                  style: Theme.of(context).textTheme.headline5,
                 ),
                 SizedBox(height: defaultSize / 2),
                 Text(
                   email,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    color: Color(0xFF8492A2),
-                  ),
+                  style: Theme.of(context).textTheme.bodyText1.copyWith(fontWeight: FontWeight.w500)
                 )
               ],
             ),

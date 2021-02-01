@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 
 class ProfileProvider {
   final String _domain = 'randomuser.me';
-  bool _isLoading = false;
+  final ProfileResponse response = null;
 
   Future<ProfileResponse> _processRequestData(Uri url) async {
     final resp = await http.get(url);
@@ -16,12 +16,11 @@ class ProfileProvider {
   }
 
   Future<ProfileResponse> getProfileInfo() async {
-    if (_isLoading) return null;
-
-    _isLoading = true;
+    if (response != null) {
+      return response;
+    }
     final url = Uri.https(_domain, '/api');
     final resp = await _processRequestData(url);
-    _isLoading = false;
     return resp;
   }
 }
