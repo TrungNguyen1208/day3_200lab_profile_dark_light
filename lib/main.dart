@@ -19,17 +19,6 @@ class _DarkLightThemeState extends State<DarkLightTheme> {
   final provider = ProfileProvider();
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  void _changeTheme() {
-    setState(() {
-      _isLight = !_isLight;
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -54,6 +43,12 @@ class _DarkLightThemeState extends State<DarkLightTheme> {
         }
       },
     );
+  }
+
+  void _changeTheme() {
+    setState(() {
+      _isLight = !_isLight;
+    });
   }
 }
 
