@@ -1,63 +1,29 @@
 import 'package:day3_200lab_profile_dark_light/model/profile_response.dart';
-import 'package:day3_200lab_profile_dark_light/provider/profile_provider.dart';
 import 'package:day3_200lab_profile_dark_light/utils/size_config.dart';
 import 'package:flutter/material.dart';
 
 import 'profile_header.dart';
 import 'profile_info.dart';
 
-class ProfileScreen extends StatefulWidget {
+class ProfileScreen extends StatelessWidget {
 
   final Function onPressedChangeTheme;
+  final ProfileResponse response;
 
-  const ProfileScreen({Key key, this.onPressedChangeTheme}) : super(key: key);
-
-  @override
-  _ProfileScreenState createState() => _ProfileScreenState();
-}
-
-class _ProfileScreenState extends State<ProfileScreen> {
-
-  final provider = ProfileProvider();
-
-  @override
-  void initState() {
-    super.initState();
-  }
+  const ProfileScreen({Key key, this.onPressedChangeTheme, this.response}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    print('render build');
-
     return Scaffold(
-      appBar: _buildAppBar(),
+      appBar: _buildAppBar(context),
       body: SingleChildScrollView(
-        child: _buildContent(),
+        child: _buildProfileUser(context, response),
       ),
     );
   }
 
-  Widget _buildContent() {
-    return FutureBuilder(
-      future: provider.getProfileInfo(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          print('hasData');
-          return _buildProfileUser(snapshot.data);
-        } else {
-          return Container(
-            height: 600,
-            child: Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
-        }
-      },
-    );
-  }
-
-  Widget _buildProfileUser(ProfileResponse response) {
+  Widget _buildProfileUser(BuildContext context, ProfileResponse response) {
     final user = response.results[0];
     final imageUrl = user.picture.large;
 
@@ -81,7 +47,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  AppBar _buildAppBar() {
+  AppBar _buildAppBar(BuildContext context) {
     return AppBar(
       backgroundColor: Theme.of(context).primaryColor,
       leading: SizedBox(),
@@ -92,7 +58,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           onPressed: () {},
           child: IconButton(
             icon: Icon(Icons.wb_sunny, color: Colors.white),
-            onPressed: widget.onPressedChangeTheme,
+            onPressed: onPressedChangeTheme,
           ),
         ),
       ],
