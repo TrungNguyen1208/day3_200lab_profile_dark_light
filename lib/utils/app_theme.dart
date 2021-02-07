@@ -8,7 +8,7 @@ class AppTheme {
     brightness: Brightness.light,
     primaryColor: AppColor.kPrimaryColor,
     scaffoldBackgroundColor: Colors.white,
-    appBarTheme: AppBarTheme(color: Colors.white, elevation: 0),
+    appBarTheme: AppBarTheme(color: AppColor.kPrimaryColor, elevation: 0, centerTitle: true),
     textTheme: TextTheme(
       headline5: TextStyle(fontSize: 24.0, color: AppColor.kTextColor),
       headline6: TextStyle(fontSize: 20.0, color: Colors.white, fontWeight: FontWeight.bold),
@@ -23,7 +23,7 @@ class AppTheme {
     brightness: Brightness.dark,
     primaryColor: AppColor.kPrimaryDarkModeColor,
     scaffoldBackgroundColor: AppColor.kBgDarkModeColor,
-    appBarTheme: AppBarTheme(color: Colors.white, elevation: 0),
+    appBarTheme: AppBarTheme(color: AppColor.kPrimaryDarkModeColor, elevation: 0, centerTitle: true),
     textTheme: TextTheme(
       headline5: TextStyle(fontSize: 24.0, color: Colors.white),
       headline6: TextStyle(fontSize: 20.0, color: Colors.white, fontWeight: FontWeight.bold),

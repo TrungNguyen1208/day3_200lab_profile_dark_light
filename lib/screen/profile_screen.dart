@@ -7,19 +7,15 @@ import 'profile_info.dart';
 
 class ProfileScreen extends StatelessWidget {
 
-  final Function onPressedChangeTheme;
   final ProfileResponse response;
 
-  const ProfileScreen({Key key, this.onPressedChangeTheme, this.response}) : super(key: key);
+  const ProfileScreen({Key key, this.response}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return Scaffold(
-      appBar: _buildAppBar(context),
-      body: SingleChildScrollView(
-        child: _buildProfileUser(context, response),
-      ),
+    return SingleChildScrollView(
+      child: _buildProfileUser(context, response),
     );
   }
 
@@ -43,24 +39,6 @@ class ProfileScreen extends StatelessWidget {
           ),
         ),
         ProfileInfo(user: user),
-      ],
-    );
-  }
-
-  AppBar _buildAppBar(BuildContext context) {
-    return AppBar(
-      backgroundColor: Theme.of(context).primaryColor,
-      leading: SizedBox(),
-      centerTitle: true,
-      title: Text('Profile', style: Theme.of(context).textTheme.headline6),
-      actions: <Widget>[
-        FlatButton(
-          onPressed: () {},
-          child: IconButton(
-            icon: Icon(Icons.wb_sunny, color: Colors.white),
-            onPressed: onPressedChangeTheme,
-          ),
-        ),
       ],
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'model/profile_response.dart';
 import 'provider/profile_provider.dart';
 import 'screen/profile_screen.dart';
 import 'utils/app_theme.dart';
@@ -20,22 +21,41 @@ class _DarkLightThemeState extends State<DarkLightTheme> {
 
   @override
   Widget build(BuildContext context) {
+    provider.getProfileInfo();
+    print('build DarkLightThemeState');
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Profile',
       theme: _isLight ? AppTheme.lightTheme : AppTheme.darkTheme,
       darkTheme: AppTheme.darkTheme,
-      home: _buildContent(),
+      home: Scaffold(
+        appBar: _buildAppBar(),
+        body: _buildContent(),
+      ),
+    );
+  }
+
+  AppBar _buildAppBar() {
+    return AppBar(
+      leading: SizedBox(),
+      title: Text('Profile', style: Theme.of(context).textTheme.headline6),
+      actions: <Widget>[
+        IconButton(
+          icon: Icon(Icons.wb_sunny, color: Colors.white),
+          onPressed: _onPressedChangeTheme,
+        ),
+      ],
     );
   }
 
   Widget _buildContent() {
-    return FutureBuilder(
-      future: provider.getProfileInfo(),
-      builder: (context, snapshot) {
+    return StreamBuilder(
+      stream: provider.profileStream,
+      builder: (BuildContext context, AsyncSnapshot<ProfileResponse> snapshot) {
         if (snapshot.hasData) {
           print('hasData');
-          return ProfileScreen(response: snapshot.data, onPressedChangeTheme:_changeTheme);
+          return ProfileScreen(response: snapshot.data);
         } else {
           return Center(
             child: CircularProgressIndicator(),
@@ -45,7 +65,7 @@ class _DarkLightThemeState extends State<DarkLightTheme> {
     );
   }
 
-  void _changeTheme() {
+  void _onPressedChangeTheme() {
     setState(() {
       _isLight = !_isLight;
     });

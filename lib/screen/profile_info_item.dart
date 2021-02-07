@@ -14,7 +14,7 @@ class ProfileInfoItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final defaultSize = SizeConfig.defaultSize;
     return InkWell(
-      onTap: onPress,
+      onTap: onPress ?? () {},
       child: Padding(
         padding: EdgeInsets.symmetric(
             horizontal: defaultSize * 5, vertical: defaultSize * 2),

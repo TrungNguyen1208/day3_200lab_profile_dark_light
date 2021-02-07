@@ -1,8 +1,8 @@
 import 'package:day3_200lab_profile_dark_light/model/results.dart';
+import 'package:day3_200lab_profile_dark_light/utils/date_util.dart';
 import 'package:flutter/material.dart';
 
 import 'profile_info_item.dart';
-import 'package:intl/intl.dart';
 
 class ProfileInfo extends StatelessWidget {
 
@@ -14,25 +14,21 @@ class ProfileInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     final email = user.email;
     final phone = user.phone;
-    final tempDate = DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").parse(user.dob.date);
-    final birthday = DateFormat.yMMMMEEEEd().format(tempDate);
+    final birthday = DateUtil.convertIsoDateToBirthdayFormat(user.dob.date);
 
     return Column(
       children: <Widget>[
         ProfileInfoItem(
           icon: Icons.calendar_today_rounded,
           title: birthday,
-          onPress: () {},
         ),
         ProfileInfoItem(
           icon: Icons.email,
           title: email,
-          onPress: () {},
         ),
         ProfileInfoItem(
           icon: Icons.phone,
           title: phone,
-          onPress: () {},
         ),
       ],
     );
