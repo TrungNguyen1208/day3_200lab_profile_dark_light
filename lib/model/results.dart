@@ -1,3 +1,5 @@
+import 'package:day3_200lab_profile_dark_light/utils/date_util.dart';
+
 import 'name.dart';
 import 'location.dart';
 import 'login.dart';
@@ -19,6 +21,10 @@ class Results {
   Id id;
   Picture picture;
   String nat;
+
+  String get birthday {
+    return DateUtil.convertIsoDateToBirthdayFormat(dob.date);
+  }
 
   Results({
       this.gender, 

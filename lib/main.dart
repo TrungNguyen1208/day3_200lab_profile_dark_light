@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'model/profile_response.dart';
 import 'provider/profile_provider.dart';
 import 'screen/profile_screen.dart';
 import 'utils/app_theme.dart';
@@ -15,15 +14,17 @@ class DarkLightTheme extends StatefulWidget {
 }
 
 class _DarkLightThemeState extends State<DarkLightTheme> {
-
   bool _isLight = true;
   final provider = ProfileProvider();
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
     provider.getProfileInfo();
-    print('build DarkLightThemeState');
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Profile',
@@ -52,15 +53,11 @@ class _DarkLightThemeState extends State<DarkLightTheme> {
   Widget _buildContent() {
     return StreamBuilder(
       stream: provider.profileStream,
-      builder: (BuildContext context, AsyncSnapshot<ProfileResponse> snapshot) {
+      builder: (context, snapshot) {
         if (snapshot.hasData) {
-          print('hasData');
           return ProfileScreen(response: snapshot.data);
-        } else {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
         }
+        return Center(child: CircularProgressIndicator());
       },
     );
   }
@@ -71,4 +68,3 @@ class _DarkLightThemeState extends State<DarkLightTheme> {
     });
   }
 }
-

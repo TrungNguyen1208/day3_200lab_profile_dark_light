@@ -14,7 +14,7 @@ class ProfileInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     final email = user.email;
     final phone = user.phone;
-    final birthday = DateUtil.convertIsoDateToBirthdayFormat(user.dob.date);
+    final birthday = user.birthday;
 
     return Column(
       children: <Widget>[

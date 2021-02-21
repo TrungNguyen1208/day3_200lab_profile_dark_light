@@ -7,8 +7,6 @@ import 'package:http/http.dart' as http;
 class ProfileProvider {
   final String _domain = 'randomuser.me';
 
-  ProfileResponse response;
-
   final _streamCtrl= StreamController<ProfileResponse>.broadcast();
   Function(ProfileResponse) get _sink => _streamCtrl.sink.add;
   Stream<ProfileResponse> get profileStream => _streamCtrl.stream;
@@ -21,12 +19,8 @@ class ProfileProvider {
   }
 
   Future<ProfileResponse> getProfileInfo() async {
-    // Fix call API get data again
-    if (response != null) {
-      return response;
-    }
     final url = Uri.https(_domain, '/api');
-    response = await _processRequestData(url);
+    final response = await _processRequestData(url);
     _sink(response);
     return response;
   }
