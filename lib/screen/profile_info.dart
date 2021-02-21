@@ -1,7 +1,5 @@
 import 'package:day3_200lab_profile_dark_light/model/results.dart';
-import 'package:day3_200lab_profile_dark_light/utils/date_util.dart';
 import 'package:flutter/material.dart';
-
 import 'profile_info_item.dart';
 
 class ProfileInfo extends StatelessWidget {
