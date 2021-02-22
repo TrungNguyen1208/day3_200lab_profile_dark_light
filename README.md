@@ -1,6 +1,8 @@
 # day3_200lab_profile_dark_light
 
-Profile Screen Dark Light Mide
+Profile Screen Dark Light Mode
+- Dark Light Theme.
+- API Call
 
-Demo:
-<img src="https://github.com/TrungNguyen1208/day3_200lab_profile_dark_light/blob/master/preview/demo.gif" width="50%"/>
+
+<img src="https://github.com/TrungNguyen1208/day3_200lab_profile_dark_light/blob/master/preview/demo.gif" width="35%"/>
